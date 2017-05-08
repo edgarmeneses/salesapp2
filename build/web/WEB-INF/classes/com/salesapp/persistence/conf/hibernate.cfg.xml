@@ -47,6 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">bases1</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <property name="hibernate.connection.pool_size">1000</property>
     <mapping class="com.salesapp.logic.entity.Supplier" file="" jar="" package="" resource="com/salesapp/persistence/map/suppliers.hbm.xml"/>
     <mapping class="com.salesapp.logic.entity.Person" file="" jar="" package="" resource="com/salesapp/persistence/map/persons.hbm.xml"/>
     <mapping class="com.salesapp.logic.entity.Place" file="" jar="" package="" resource="com/salesapp/persistence/map/places.hbm.xml"/>

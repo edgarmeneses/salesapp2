@@ -19,7 +19,7 @@ public class ConverterConfig {
             case INACTIVO:
                 return "I";
             default:
-                return "";
+                return "I";
         }
     }
     
@@ -30,7 +30,7 @@ public class ConverterConfig {
             case "I":
                 return Status.INACTIVO;
             default:
-                return null;
+                return Status.INACTIVO;
         }
     }
     
@@ -41,7 +41,7 @@ public class ConverterConfig {
             case MUJER:
                 return "F";
             default:
-                return "";
+                return null;
         }
     }
     
@@ -63,7 +63,7 @@ public class ConverterConfig {
             case VENDEDOR:
                 return "B";
             default:
-               return "";
+               return "S";
         }
     }
     
@@ -74,7 +74,7 @@ public class ConverterConfig {
             case "B":
                 return PersonType.CLIENTE;
             default:
-                return null;
+                return PersonType.CLIENTE;
         }
     }
     
@@ -87,7 +87,7 @@ public class ConverterConfig {
             case "C":
                 return PlaceType.CIUDAD;
             default:
-                return null;
+                return PlaceType.CIUDAD;
         }
     }
     
@@ -108,10 +108,10 @@ public class ConverterConfig {
         switch(branchType){
             case "P" :
                 return BranchType.PRINCIPAL;
-            case "S":
+            case "N":
                 return BranchType.SEDE;
             default:
-                return null;
+                return BranchType.SEDE;
         }
     }
     
@@ -125,7 +125,4 @@ public class ConverterConfig {
                  return "N";
         }
     }
-    
-    
-    
 }

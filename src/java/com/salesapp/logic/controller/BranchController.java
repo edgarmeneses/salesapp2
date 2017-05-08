@@ -62,4 +62,21 @@ public class BranchController {
            // return null;
        // }
     }
+     
+     public static Branch findByName(String name){
+         SessionApp.connect();
+         Session session = SessionApp.getSession();
+         String hql = "from com.salesapp.logic.entity.Branch " +
+                      "where name='"+name.toUpperCase()+"'";
+         Query query = session.createQuery(hql);
+         
+         if(!query.list().isEmpty()){
+             Branch branch = (Branch) query.list().get(0);
+              SessionApp.close();
+            return branch;
+         }else{
+              SessionApp.close();
+             return null;
+         }
+     }
 }
