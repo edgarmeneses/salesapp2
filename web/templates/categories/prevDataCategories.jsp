@@ -9,8 +9,7 @@
 <% ArrayList<String []> data = (ArrayList<String []>) session.getAttribute("datos");%>
 <!DOCTYPE html>
 <html>
-    
-    <head>
+     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1">
 
@@ -146,7 +145,7 @@
         <div class="breadcrumb2">
             <div class="btn-group btn-breadcrumb btn-fill">
                 <a href="admin" class="btn btn-primary btn-fill"><i class="fa fa-home"></i></a>
-                <a href="places" class="btn btn-primary btn-fill">Lugares</a>
+                <a href="categories" class="btn btn-primary btn-fill">Categorias</a>
                 <a class="btn btn-info btn-fill">Datos cargados</a>
                 <!--a href="#" class="btn btn-info btn-fill">Success</a-->
             </div>
@@ -159,7 +158,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Lugares cargados en el archivo</h4>
+                                <h4 class="title">Cartegorias cargadas en el archivo</h4>
                             </div>
                             <div class="content">
                                 
@@ -169,12 +168,8 @@
                                 <table name="table" id="table" class="table table-hover table-striped">
                                     <thead>
                                       <tr>
-                                        <th>Sucursal padre</th>
-                                        <th>Ubicación</th>
-                                        <th>NIT</th>
+                                        <th>Categoria Padre</th>
                                         <th>Nombre</th>
-                                        <th>Dirección</th>
-                                        <th>Tipo sucursal</th>
                                         <th>Estado</th>
                                         <!--th>Estado</th-->
                                       </tr>
@@ -184,14 +179,9 @@
                                         <% for ( int i=0; i < data.size(); i++){
                                         %>
                                         <tr name="lugares">
-                                            <td id="sub"><input name="" id="sucPadre" type="text" value="<%= data.get(i)[0] %>" class="form-control" > </td>
-                                            <td><input name="" id="locations" type="text" value="<%= data.get(i)[1] %>" class="form-control" > </td>
-                                            <td><input name="" id="NITS" type="text" value="<%= data.get(i)[2] %>" class="form-control"> </td>
-                                            <td><input name="" id="names" type="text" value="<%= data.get(i)[3] %>" class="form-control"> </td>
-                                            <td><input name="" id="address" type="text" value="<%= data.get(i)[4] %>" class="form-control"> </td>
-                                            <td><input name="" id="types" type="text" value="<%= data.get(i)[5] %>" class="form-control"> </td>
-                                            <td><input name="" id="status" type="text" value="<%= data.get(i)[6] %>" class="form-control"> </td>
-                                            <!--td><input name="" id="status" type="text" value="<%= data.get(i)[3] %>" class="form-control"> </td-->
+                                            <td id="sub"><input name="" id="subcategory" type="text" value="<%= data.get(i)[0] %>" class="form-control" > </td>
+                                            <td><input name="" id="names" type="text" value="<%= data.get(i)[1] %>" class="form-control" > </td>
+                                            <td><input name="" id="status" type="text" value="<%= data.get(i)[2] %>" class="form-control"> </td>
 
                                         </tr>
                                         <% } %>
@@ -257,12 +247,12 @@
 <script>
     $(document).ready(function(){
         
-        var sendData = function(places, names, types, status){
+        var sendData = function(subcategory, names, status){
             $("#table").hide();
-            $.post('saveplaces', {
-                places:places,
+            $.post('savecategories', {
+                subcategory:subcategory,
                 names:names,
-                types:types
+                status:status
             }, function(response){
                 $("#response").html(response);
             })
@@ -270,34 +260,28 @@
        
         $("#send").click(function (){
             
-            var places = "";
+            var subcategory = "";
             var names = "";
-            var types = "";
             var status = "";
 
-            $('tr #place').each(function(indice, elemento){
-                // places.push($(elemento).val());
-                places = places + $(elemento).val() +";"
+            $('tr #subcategory').each(function(indice, elemento){
+               
+                subcategory = subcategory + $(elemento).val() +";"
             });
 
             $('tr #names').each(function(indice, elemento){
-                // places.push($(elemento).val());
+                
                 names = names + $(elemento).val() +";"
             });
 
-            $('tr #types').each(function(indice, elemento){
-                // places.push($(elemento).val());
-                types = types + $(elemento).val() +";"
-            });
-
             $('tr #status').each(function(indice, elemento){
-                // places.push($(elemento).val());
+                
                 status = status + $(elemento).val() +";"
             });
+
             
-            sendData(places, names, types, status);
+            sendData(subcategory, names, status);
         }); 
     });
 </script>
 </html>
-

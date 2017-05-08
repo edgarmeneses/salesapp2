@@ -1,20 +1,18 @@
 <%-- 
-    Document   : admin
-    Created on : 28/03/2017, 01:59:53 PM
+    Document   : prevData
+    Created on : 8/04/2017, 12:50:12 PM
     Author     : EDGAR MENESES
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.salesapp.logic.entity.Branch"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% ArrayList<Branch> branches = (ArrayList<Branch>) session.getAttribute("branches");%>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, maximum-scale=1">
+<% ArrayList<String []> data = (ArrayList<String []>) session.getAttribute("datos");%>
+<!DOCTYPE html>
+<html>
+     <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
 
-    <title>Sucursales</title>
     <link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
     <link rel="shortcut icon" href="public/assets/img/favicon2.ico" type="img/x-icon">
     <link href="public/assets/css/beabdrum.css" rel="stylesheet">
@@ -43,9 +41,11 @@
      <link href="public/assets/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 </head>
-<body>
 
-<div class="wrapper">
+
+    <body>
+        
+        <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="public/assets/img/sidebar-6.jpg">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
@@ -62,17 +62,17 @@
                 <li>
                     <a href="admin">
                         <i class="fa fa-dashboard"></i>
-                        <p>Home</p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="places">
                         <i class="fa fa-globe"></i>
                         <p>Lugares</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a>
+                <li>
+                    <a href="branches">
                         <i class="fa fa-building-o"></i>
                         <p>Sucursales</p>
                     </a>
@@ -101,8 +101,8 @@
                         <p>Productos</p>
                     </a>
                 </li>
-		          <li class="active-pro">
-                    <a>
+		<li class="active-pro">
+                    <a href="">
                         <img src="public/assets/img/logo.png" alt="" height="10%" width="10%">
                     </a>
                 </li>
@@ -120,13 +120,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Sucursales</a>
+                    <a class="navbar-brand" href="#">Datos cargado</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-building-o"></i>
+                                <i class="fa fa-file-archive-o"></i>
                             </a>
                         </li>
                     </ul>
@@ -142,13 +142,12 @@
             </div>
         </nav>
 
-
         <div class="breadcrumb2">
             <div class="btn-group btn-breadcrumb btn-fill">
                 <a href="admin" class="btn btn-primary btn-fill"><i class="fa fa-home"></i></a>
-                <a class="btn btn-info btn-fill">Sucursales</a>
-                <!--a href="#" class="btn btn-primary btn-fill"">Breadcrumbs</a>
-                <a href="#" class="btn btn-info btn-fill">Success</a-->
+                <a href="categories" class="btn btn-primary btn-fill">Categorias</a>
+                <a class="btn btn-info btn-fill">Datos cargados</a>
+                <!--a href="#" class="btn btn-info btn-fill">Success</a-->
             </div>
         </div>
 
@@ -159,60 +158,38 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Cargar sucursales</h4>
+                                <h4 class="title">Cartegorias cargadas en el archivo</h4>
                             </div>
                             <div class="content">
                                 
                                 
-                                 <form method="POST" action="branches" enctype="multipart/form-data">
-                                     <div class="row">
-                                         <div class="col-md-5 col-md-offset-0">
-                                             <div class="form-group">
-                                                 <label>Archivo lugares (csv)</label>
-                                                 <input type="file" id="file" name="file" class="form-control" />
-                                             </div>
-                                         </div>
-                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-fill pull-right">Enviar</button>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Lista sucursales</h4>
-                            </div>
-                            <div class="content">
-                               
+                                
+                                
                                 <table name="table" id="table" class="table table-hover table-striped">
                                     <thead>
                                       <tr>
-                                        <th>NIT</th>
+                                        <th>Categoria Padre</th>
                                         <th>Nombre</th>
-                                        <th>Dirección</th>
-                                        <th>Telefono</th>
-                                        <th>Ubicación</th>
                                         <th>Estado</th>
+                                        <!--th>Estado</th-->
                                       </tr>
                                     </thead>
                                     
                                     <tbody>
-                                        <% for ( int i=0; i < branches.size(); i++){
+                                        <% for ( int i=0; i < data.size(); i++){
                                         %>
-                                        <tr>
-                                            <td> <%= branches.get(i).getNit() %> </td>
-                                            <td> <%= branches.get(i).getName().toUpperCase() %> </td>
-                                            <td> <%= branches.get(i).getAddress().toUpperCase() %> </td>
-                                            <td> <%= branches.get(i).getPhone() %> </td>
-                                            <td> <%= branches.get(i).getLocationName() %> </td>
-                                            <td> <%= branches.get(i).status()%> </td>
-                                           
+                                        <tr name="lugares">
+                                            <td id="sub"><input name="" id="subcategory" type="text" value="<%= data.get(i)[0] %>" class="form-control" > </td>
+                                            <td><input name="" id="names" type="text" value="<%= data.get(i)[1] %>" class="form-control" > </td>
+                                            <td><input name="" id="status" type="text" value="<%= data.get(i)[2] %>" class="form-control"> </td>
 
                                         </tr>
                                         <% } %>
                                     </tbody>
                                 </table>
+                                <button id="send" type="button" class="btn btn-primary btn-fill pull-right" >Enviar</button>
+                                <div class="clearfix"></div>
+                                
                             </div>
                         </div>
                     </div>
@@ -246,12 +223,10 @@
 
     </div>
 </div>
-
-
-
 </body>
-
-    <!--   Core JS Files   -->
+    
+   
+<!--   Core JS Files   -->
     <script src="public/assets/js/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="public/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -269,5 +244,44 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="public/assets/js/demo.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        var sendData = function(subcategory, names, status){
+            $("#table").hide();
+            $.post('savecategories', {
+                subcategory:subcategory,
+                names:names,
+                status:status
+            }, function(response){
+                $("#response").html(response);
+            })
+        }
+       
+        $("#send").click(function (){
+            
+            var subcategory = "";
+            var names = "";
+            var status = "";
 
+            $('tr #subcategory').each(function(indice, elemento){
+               
+                subcategory = subcategory + $(elemento).val() +";"
+            });
+
+            $('tr #names').each(function(indice, elemento){
+                
+                names = names + $(elemento).val() +";"
+            });
+
+            $('tr #status').each(function(indice, elemento){
+                
+                status = status + $(elemento).val() +";"
+            });
+
+            
+            sendData(subcategory, names, status);
+        }); 
+    });
+</script>
 </html>
