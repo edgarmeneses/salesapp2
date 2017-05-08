@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="places">
+                    <a>
                         <i class="fa fa-globe"></i>
                         <p>Lugares</p>
                     </a>
