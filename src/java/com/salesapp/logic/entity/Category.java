@@ -82,6 +82,15 @@ public class Category implements Serializable{
     public Category getSubcategory() {
         return subcategory;
     }
+    
+     public String getNameSubcategory(){
+        if(subcategory != null){
+            return subcategory.getName();
+        }else{
+            return "Sin Categoria padre";
+        }
+    }
+
 
     public void setSubcategory(Category subcategory) {
         this.subcategory = subcategory;

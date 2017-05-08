@@ -59,4 +59,34 @@ public class CategoryController {
         }
     }
     
+      public static List findAll(){
+        SessionApp.connect();
+        Session session = SessionApp.getSession();
+        String hql = "from com.salesapp.logic.entity.Category ";
+        System.out.println(hql);
+        Query query = session.createQuery(hql);
+       
+        List categories = query.list();
+
+        SessionApp.close();
+        return categories;
+    }
+    
+        public static Category findByName(String name){
+        SessionApp.connect();
+        Session session = SessionApp.getSession();
+        String hql = "from com.salesapp.logic.entity.Category "+
+                     "where name='"+name.toUpperCase()+"'";
+        Query query = session.createQuery(hql);
+        
+        if(!query.list().isEmpty()){
+            Category category = (Category) query.list().get(0);
+             SessionApp.close();
+            return category;
+        }else{
+             SessionApp.close();
+            return null;
+        }
+    }
+    
 }
