@@ -72,8 +72,8 @@
                         <p>Lugares</p>
                     </a>
                 </li>
-                <li>
-                    <a href="branches">
+                <li class="active">
+                    <a>
                         <i class="fa fa-building-o"></i>
                         <p>Sucursales</p>
                     </a>

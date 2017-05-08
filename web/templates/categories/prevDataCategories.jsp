@@ -65,7 +65,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="places">
                         <i class="fa fa-globe"></i>
                         <p>Lugares</p>
@@ -89,8 +89,8 @@
                         <p>Usuarios</p>
                     </a>
                 </li>
-                <li>
-                    <a href="categories">
+                <li class="active">
+                    <a>
                         <i class="fa fa-sitemap"></i>
                         <p>Categorias</p>
                     </a>
