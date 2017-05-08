@@ -185,6 +185,14 @@ public class Person implements Serializable{
         this.receipts = receipts;
     }
     
+    public String getNames(){
+        return this.middlename + " " + this.lastname;
+    }
+    
+    public Status status(){
+        return ConverterConfig.converteStatus(status);
+    }
+    
     
 
     @Override

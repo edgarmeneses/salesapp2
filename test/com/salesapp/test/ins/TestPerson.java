@@ -22,7 +22,7 @@ import javafx.scene.input.DataFormat;
 public class TestPerson {
     
     public static void main(String[] args) {
-       // System.out.println("Persona creada " + PersonController.createSalesAgent(4536363, "Marcela", "Meneses", new GregorianCalendar(1991, 06, 22).getTime(), "5355355", "calle 34 # 32 - 12", "marcela.meneses@corre.com", Gender.MUJER, Status.ACTIVO, "marcela.m", "a123"));
+        System.out.println("Persona creada " + PersonController.createSalesAgent(4536363, "Marcela", "Meneses", new GregorianCalendar(1991, 06, 22).getTime(), "5355355", "calle 34 # 32 - 12", "marcela.meneses@corre.com", Gender.MUJER, Status.ACTIVO, "marcela.m", "a123"));
         //PersonController.createSalesAgent( , );
         System.out.println(PersonController.findById(1));
     }

@@ -67,6 +67,19 @@ public class PersonController {
         }
     }
     
+     public static List findAll(){
+        SessionApp.connect();
+        Session session = SessionApp.getSession();
+        String hql = "from com.salesapp.logic.entity.Person ";
+        System.out.println(hql);
+        Query query = session.createQuery(hql);
+       
+        List persons = query.list();
+
+        SessionApp.close();
+        return persons;
+    }
+    
     /*public static List findAll(){
         SessionApp.connect();
         Session session = SessionApp.getSession();

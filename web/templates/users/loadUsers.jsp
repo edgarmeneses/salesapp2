@@ -4,16 +4,20 @@
     Author     : EDGAR MENESES
 --%>
 
+<%@page import="com.salesapp.logic.entity.Person"%>
+<%@page import="java.util.ArrayList"%>>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ArrayList<Person> persons = (ArrayList<Person>) session.getAttribute("persons");%>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, maximum-scale=1">
 
-    <title>Login</title>
-    <link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
+    <title>Usuarios</title>
+<link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
     <link rel="shortcut icon" href="public/assets/img/favicon2.ico" type="img/x-icon">
+    <link href="public/assets/css/beabdrum.css" rel="stylesheet">
 
     <link href='public/assets/fonts/fontmontserrat.css' rel='stylesheet' type='text/css'>
     <link href='public/assets/fonts/fonts.googleapis.css' rel='stylesheet' type='text/css'>
@@ -34,21 +38,22 @@
 
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"-->
+    <link href="public/assets/css/font-awesome_1.css" rel="stylesheet">
+     <link href="public/assets/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-6.jpg">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a class="simple-text">
                     Salesapp
                 </a>
             </div>
@@ -57,7 +62,7 @@
                 <li>
                     <a href="admin">
                         <i class="pe-7s-graph"></i>
-                        <p>Home</p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
@@ -97,9 +102,8 @@
                     </a>
                 </li>
 		<li class="active-pro">
-                    <a href="">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
+                    <a>
+                        <img src="public/assets/img/logo.png" alt="" height="10%" width="10%">
                     </a>
                 </li>
             </ul>
@@ -116,13 +120,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="#">Usuarios</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-home"></i>
+                                <i class="fa fa-users"></i>
                             </a>
                         </li>
                     </ul>
@@ -137,162 +141,102 @@
                 </div>
             </div>
         </nav>
-
+        
+        <div class="breadcrumb2">
+            <div class="btn-group btn-breadcrumb btn-fill">
+                <a href="admin" class="btn btn-primary btn-fill"><i class="fa fa-home"></i></a>
+                <a class="btn btn-info btn-fill">Usuarios</a>
+                <!--a href="#" class="btn btn-primary btn-fill"">Breadcrumbs</a>
+                <a href="#" class="btn btn-info btn-fill">Success</a-->
+            </div>
+        </div>
 
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">Cargar usuarios</h4>
                             </div>
                             <div class="content">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Mike">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                
+                                
+                                 <form method="POST" action="users" enctype="multipart/form-data">
+                                     <div class="row">
+                                         <div class="col-md-5 col-md-offset-0">
+                                             <div class="form-group">
+                                                 <label>Archivo lugares (csv)</label>
+                                                 <input type="file" id="file" name="file" class="form-control" />
+                                             </div>
+                                         </div>
+                                     </div>
+                                    <button type="submit" class="btn btn-primary btn-fill pull-right">Enviar</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-user">
-                            <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Lista lugares</h4>
                             </div>
                             <div class="content">
-                                <div class="author">
-                                     <a href="#">
-                                    <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..."/>
-
-                                      <h4 class="title">Mike Andrew<br />
-                                         <small>michael24</small>
-                                      </h4>
-                                    </a>
-                                </div>
-                                <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-
+                                <table name="table" id="table" class="table table-hover table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Documento</th>
+                                        <th>Nombres</th>
+                                        <th>Telefono</th>
+                                        <th>Dirección</th>
+                                        <th>Correo</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+                                      </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <% for ( int i=0; i < persons.size(); i++){
+                                        %>
+                                        <tr>
+                                            <td> <%= persons.get(i).getDocument() %> </td>
+                                            <td> <%= persons.get(i).getNames().toUpperCase() %> </td>
+                                            <td> <%= persons.get(i).getPhone() %> </td>
+                                            <td> <%= persons.get(i).getAddress() %> </td>
+                                            <td> <%= persons.get(i).getEmail() %> </td>
+                                            <td> <%= persons.get(i).personType() %> </td>
+                                            <td> <%= persons.get(i).status() %> </td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                                
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-
-        <footer class="footer">
+       <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="#">
-                                Home
+                            <a href="">
+                                home
                             </a>
                         </li>
+                        
                         <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
+                            <a href="admin">
+                                Dashboard
                             </a>
                         </li>
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                    &copy; <a href="http://www.creative-tim.com">Creative Tim and EMC</a>, All Rights Reserved
                 </p>
             </div>
         </footer>
@@ -304,25 +248,22 @@
 </body>
 
     <!--   Core JS Files   -->
-    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="public/assets/js/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="public/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="public/assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="public/assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="public/assets/js/bootstrap-notify.js"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+    <script src="public/assets/js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="public/assets/js/demo.js"></script>
 
 </html>
