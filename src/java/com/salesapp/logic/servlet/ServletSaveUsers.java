@@ -5,6 +5,8 @@
  */
 package com.salesapp.logic.servlet;
 
+import com.salesapp.logic.services.SaveBranches;
+import com.salesapp.logic.services.SaveUsers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author EDGAR MENESES
  */
-@WebServlet(name = "users", urlPatterns = {"/users"})
-public class LoadUsers extends HttpServlet {
+@WebServlet(name = "saveusers", urlPatterns = {"/saveusers"})
+public class ServletSaveUsers extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,46 @@ public class LoadUsers extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoadUsers</title>");            
+            out.println("<title>Servlet ServletSaveUsers</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoadUsers at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletSaveUsers at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+    
+    protected void processSave(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String [] documents  =  request.getParameter("documents").split(";");
+        String [] lastnames  =  request.getParameter("lastnames").split(";");
+        String [] middlenames  =  request.getParameter("middlenames").split(";");
+        String [] genders  =  request.getParameter("genders").split(";");
+        String [] emails  =  request.getParameter("emails").split(";");
+        String [] phones  =  request.getParameter("phones").split(";");
+        String [] address  =  request.getParameter("address").split(";");
+        String [] roles  =  request.getParameter("roles").split(";");
+        String [] birthdays  =  request.getParameter("birthdays").split(";");
+        String [] status  =  request.getParameter("status").split(";");
+        String [] username  =  request.getParameter("username").split(";");
+        String [] passwords  =  request.getParameter("passwords").split(";");
+        //String [] status  =  request.getParameter("status").split(";");
+        SaveUsers.saveUsers(documents, lastnames, middlenames, genders, emails, phones, address, roles, birthdays, status, username, passwords);
+      /*  SavePlaces.savePlace(places, names, types); */
+     
+        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Save</title>");            
+            out.println("</head>");
+            out.println("<body>");
+           /* out.print("<h1> Lugares: "+places.length+"</h1>"); */
+            out.print("<h1> Nombres: "+documents.length+"</h1>");
+            out.print("<h1> Tipos: "+emails.length+"</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,9 +96,7 @@ public class LoadUsers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        getServletConfig().getServletContext().getRequestDispatcher("/templates/users/loadUsers.jsp").forward(request,response);
-
+        processRequest(request, response);
     }
 
     /**
@@ -74,7 +110,8 @@ public class LoadUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        processSave(request, response);
     }
 
     /**
