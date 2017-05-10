@@ -22,6 +22,7 @@ import org.hibernate.Session;
 public class ModuleQueryController {
     
     public static List findData (String queryHQL){
+        try{
         SessionApp.connect();
         Session session = SessionApp.getSession();
         SQLQuery query = session.createSQLQuery(queryHQL);
@@ -29,8 +30,17 @@ public class ModuleQueryController {
         //query.addEntity(String.class);
         List list = query.list();
         
+        if(list.size() > 0){
+            return list;
+        }else{
+            return null;
+        }
+        
         //query.addEntity(Branch.class);
-        return list;
+      
+        }catch(Exception exception){
+            return null;
+        }
     }
     
     
