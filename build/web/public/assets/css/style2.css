@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9/05/2017, 10:35:03 PM
+    Author     : EDGAR MENESES
+*/
+button#query {
+    margin-right: 20px;
+    margin-top: 2px;
+}
+card-user .image {
+    height: 75px;
+}
+label#text {
+    padding: 41px;
+    font-size: 15pt;
+    color: white;
+    text-align: center;
+}
+
+textarea#bodyQuery {
+    resize: none;
+}

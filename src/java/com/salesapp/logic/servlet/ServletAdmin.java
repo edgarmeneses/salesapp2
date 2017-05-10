@@ -5,8 +5,11 @@
  */
 package com.salesapp.logic.servlet;
 
+import com.salesapp.logic.controller.ModuleQueryController;
+import com.salesapp.logic.services.ModuleQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,6 +50,62 @@ public class ServletAdmin extends HttpServlet {
         }
     }
     
+    protected void processQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String query = request.getParameter("query");
+        System.out.println("Consulta .. " + query);
+       
+         List listResult = ModuleQueryController.findData(query);
+         if(listResult != null){
+                List<String> headres = ModuleQuery.getHeaders(listResult.get(0).toString());
+        
+                try (PrintWriter out = response.getWriter()) {
+                    /* TODO output your page here. You may use following sample code. */
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");           
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<table name="+"table" +" id="+"table " +"class="+"table table-hover table-striped"+">");
+                        out.println("<thead>");
+
+                            out.println("<tr>");
+                            for(String header: headres){
+                                out.println("<th>"+header+"</th>");
+                            }
+                            out.println("</tr>");
+
+                        out.println("</thead>");
+                        out.println("<tbody>");
+                        for(Object data: listResult){
+                            List<String> rows = ModuleQuery.getRow(data.toString());
+                            out.println("<tr>");
+                                for(String row : rows){
+                                    out.println(" <td>"+row+"</td>");
+                                }
+                            out.println("</tr>");
+                        }
+                        out.println("</tbody>");
+                    out.println("</table>");
+                    out.println("</body>");
+                    out.println("</html>");   
+                }
+         }else{
+             try (PrintWriter out = response.getWriter()) {
+                    /* TODO output your page here. You may use following sample code. */
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");           
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<p>No se encontraron resultados.</p>");
+                    out.println("</body>");
+                    out.println("</html>");   
+                }
+         }
+        
+    }
+    
     protected void processDoGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          getServletConfig().getServletContext().getRequestDispatcher("/templates/admin/admin.jsp").forward(request,response);
     }
@@ -78,7 +137,7 @@ public class ServletAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-          processRequest(request, response);
+          processQuery(request, response);
     }
 
     /**
