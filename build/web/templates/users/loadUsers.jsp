@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="com.salesapp.logic.entity.Person"%>
-<%@page import="java.util.ArrayList"%>>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% ArrayList<Person> persons = (ArrayList<Person>) session.getAttribute("persons");%>
 <!doctype html>
@@ -16,6 +16,7 @@
 
     <title>Usuarios</title>
 <link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
+   <link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
     <link rel="shortcut icon" href="public/assets/img/favicon2.ico" type="img/x-icon">
     <link href="public/assets/css/beabdrum.css" rel="stylesheet">
 
@@ -46,7 +47,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-6.jpg">
+    <div class="sidebar" data-color="purple" data-image="public/assets/img/sidebar-6.jpg">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
@@ -61,49 +62,49 @@
             <ul class="nav">
                 <li>
                     <a href="admin">
-                        <i class="pe-7s-graph"></i>
+                        <i class="fa fa-dashboard"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
                     <a href="places">
-                        <i class="pe-7s-user"></i>
+                        <i class="fa fa-globe"></i>
                         <p>Lugares</p>
                     </a>
                 </li>
                 <li>
                     <a href="branches">
-                        <i class="pe-7s-note2"></i>
+                        <i class="fa fa-building-o"></i>
                         <p>Sucursales</p>
                     </a>
                 </li>
                 <li>
                     <a href="suppliers">
-                        <i class="pe-7s-news-paper"></i>
+                        <i class="fa fa fa-truck"></i>
                         <p>Proveedores</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="">
-                        <i class="pe-7s-science"></i>
+                    <a>
+                        <i class="fa fa-users"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
                     <a href="categories">
-                        <i class="pe-7s-bell"></i>
+                        <i class="fa fa-sitemap"></i>
                         <p>Categorias</p>
                     </a>
                 </li>
                 <li>
                     <a href="products">
-                        <i class="pe-7s-bell"></i>
+                        <i class="fa fa-shopping-cart"></i>
                         <p>Productos</p>
                     </a>
                 </li>
 		<li class="active-pro">
                     <a>
-                        <img src="public/assets/img/logo.png" alt="" height="10%" width="10%">
+                       <img src="public/assets/img/logo.png" alt="" height="10%" width="10%">
                     </a>
                 </li>
             </ul>
@@ -120,12 +121,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Usuarios</a>
+                    <a class="navbar-brand">Usuarios</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a  class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-users"></i>
                             </a>
                         </li>
@@ -209,8 +210,7 @@
                                         </tr>
                                         <% } %>
                                     </tbody>
-                                </table>
-                                
+                                </table> 
                             </div>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
 
 </body>
 
-    <!--   Core JS Files   -->
+  <!--   Core JS Files   -->
     <script src="public/assets/js/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="public/assets/js/bootstrap.min.js" type="text/javascript"></script>
 

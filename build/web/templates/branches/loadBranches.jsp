@@ -62,7 +62,7 @@
                 <li>
                     <a href="admin">
                         <i class="fa fa-dashboard"></i>
-                        <p>Home</p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
@@ -125,7 +125,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-building-o"></i>
                             </a>
                         </li>

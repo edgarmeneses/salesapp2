@@ -8,6 +8,7 @@ package com.salesapp.logic.controller;
 import com.salesapp.logic.entity.Gender;
 import com.salesapp.logic.entity.Person;
 import com.salesapp.logic.entity.PersonType;
+import com.salesapp.logic.entity.Place;
 import com.salesapp.logic.entity.Receipt;
 import com.salesapp.logic.entity.Status;
 import com.salesapp.persistence.conf.SessionApp;
@@ -37,7 +38,20 @@ public class PersonController {
         return person;
     }
     
-    public static void createBuyer(int document, String middlename, String lastname, Date birthDate,
+    /*public static Person createSalesAgent(int document, String middlename, String lastname,
+            Date birthDate, String phone, String address, String email, Gender gender, 
+            Status status, String username, String password){
+        SessionApp.connect();
+        Session session = SessionApp.getSession();
+        Person person = new Person(1000, document, middlename, lastname, birthDate, 
+                        phone, address, email, gender, PersonType.VENDEDOR, status, username, password);
+        session.save(person);
+        SessionApp.commit();
+        SessionApp.close();
+        return person;
+    }*/
+    
+    public static Person createEmployee(int document, String middlename, String lastname, Date birthDate,
             String phone, String address, String email, Gender gender, Status status, PersonType personType, String username, String password){
         SessionApp.connect();
         Session session = SessionApp.getSession();
@@ -46,6 +60,7 @@ public class PersonController {
         session.save(person);
         SessionApp.commit();
         SessionApp.close();
+        return person;
     }
     
     public static Person findById(int id){
@@ -79,6 +94,24 @@ public class PersonController {
         SessionApp.close();
         return persons;
     }
+     
+     public static Person findByDocument(int document){
+        SessionApp.connect();
+        Session session = SessionApp.getSession();
+        String hql = "from com.salesapp.logic.entity.Person "+
+                     "where document="+document+"";
+        Query query = session.createQuery(hql);
+        
+        if(!query.list().isEmpty()){
+            Person person = (Person) query.list().get(0);
+             SessionApp.close();
+            return person;
+        }else{
+             SessionApp.close();
+            return null;
+        }
+    }
+
     
     /*public static List findAll(){
         SessionApp.connect();

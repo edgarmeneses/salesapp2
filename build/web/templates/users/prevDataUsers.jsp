@@ -1,22 +1,20 @@
 <%-- 
-    Document   : admin
-    Created on : 28/03/2017, 01:59:53 PM
+    Document   : prevData
+    Created on : 8/04/2017, 12:50:12 PM
     Author     : EDGAR MENESES
 --%>
 
-<%@page import="com.salesapp.logic.entity.Person"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% ArrayList<Person> persons = (ArrayList<Person>) session.getAttribute("persons");%>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, maximum-scale=1">
+<% ArrayList<String []> data = (ArrayList<String []>) session.getAttribute("datos");%>
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
 
-    <title>Usuarios</title>
-<link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
-   <link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
+    <link rel="icon" href="public/assets/img/favicon2.png" type="image/png">
     <link rel="shortcut icon" href="public/assets/img/favicon2.ico" type="img/x-icon">
     <link href="public/assets/css/beabdrum.css" rel="stylesheet">
 
@@ -44,9 +42,11 @@
      <link href="public/assets/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 </head>
-<body>
 
-<div class="wrapper">
+
+    <body>
+        
+        <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="public/assets/img/sidebar-6.jpg">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
@@ -103,8 +103,8 @@
                     </a>
                 </li>
 		<li class="active-pro">
-                    <a>
-                       <img src="public/assets/img/logo.png" alt="" height="10%" width="10%">
+                    <a href="">
+                        <img src="public/assets/img/logo.png" alt="" height="10%" width="10%">
                     </a>
                 </li>
             </ul>
@@ -121,20 +121,20 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Usuarios</a>
+                    <a class="navbar-brand" href="#">Datos cargado</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <a  class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-users"></i>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-file-archive-o"></i>
                             </a>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#">
+                            <a href="/">
                                 Log out
                             </a>
                         </li>
@@ -142,15 +142,16 @@
                 </div>
             </div>
         </nav>
-        
+
         <div class="breadcrumb2">
             <div class="btn-group btn-breadcrumb btn-fill">
                 <a href="admin" class="btn btn-primary btn-fill"><i class="fa fa-home"></i></a>
-                <a class="btn btn-info btn-fill">Usuarios</a>
-                <!--a href="#" class="btn btn-primary btn-fill"">Breadcrumbs</a>
-                <a href="#" class="btn btn-info btn-fill">Success</a-->
+                <a href="users" class="btn btn-primary btn-fill">Usuarios</a>
+                <a class="btn btn-info btn-fill">Datos cargados</a>
+                <!--a href="#" class="btn btn-info btn-fill">Success</a-->
             </div>
         </div>
+
 
         <div class="content">
             <div class="container-fluid">
@@ -158,59 +159,56 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Cargar usuarios</h4>
+                                <h4 class="title">Usuarios cargados en el archivo</h4>
                             </div>
                             <div class="content">
                                 
                                 
-                                 <form method="POST" action="users" enctype="multipart/form-data">
-                                     <div class="row">
-                                         <div class="col-md-5 col-md-offset-0">
-                                             <div class="form-group">
-                                                 <label>Archivo lugares (csv)</label>
-                                                 <input type="file" id="file" name="file" class="form-control" />
-                                             </div>
-                                         </div>
-                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-fill pull-right">Enviar</button>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Lista lugares</h4>
-                            </div>
-                            <div class="content">
+                                
+                                
                                 <table name="table" id="table" class="table table-hover table-striped">
                                     <thead>
                                       <tr>
                                         <th>Documento</th>
+                         
+                                        <th>Apellidos</th>
                                         <th>Nombres</th>
+                                        <th>Sexo</th>
+                                        <th>Email</th>
                                         <th>Telefono</th>
-                                        <th>Dirección</th>
-                                        <th>Correo</th>
+                                        <th>Direccion</th>
                                         <th>Rol</th>
+                                        <th>FechaNac</th-->
                                         <th>Estado</th>
+                                        <th>Usuario</th>
+                                        <th>Contraseña</th>
+                                        
                                       </tr>
                                     </thead>
                                     
                                     <tbody>
-                                        <% for ( int i=0; i < persons.size(); i++){
+                                        <% for ( int i=0; i < data.size(); i++){
                                         %>
-                                        <tr>
-                                            <td> <%= persons.get(i).getDocument() %> </td>
-                                            <td> <%= persons.get(i).getNames().toUpperCase() %> </td>
-                                            <td> <%= persons.get(i).getPhone() %> </td>
-                                            <td> <%= persons.get(i).getAddress() %> </td>
-                                            <td> <%= persons.get(i).getEmail() %> </td>
-                                            <td> <%= persons.get(i).personType() %> </td>
-                                            <td> <%= persons.get(i).status() %> </td>
+                                        <tr name="lugares">
+                                            <td><input name="documents" id="documents" type="text" value="<%= data.get(i)[0] %>" class="form-control" > </td>
+                                            <td><input name="lastnames" id="lastnames" type="text" value="<%= data.get(i)[2] %>" class="form-control"> </td>
+                                            <td> <input name="middlenames" id="middlenames" type="text" value="<%= data.get(i)[3] %>" class="form-control"> </td>
+                                            <td style=""><input name="genders" id="genders" type="text" value="<%= data.get(i)[4].toUpperCase().charAt(0) %>" class="form-control"> </td>
+                                            <td><input name="emails" id="emails" type="text" value="<%= data.get(i)[5] %>" class="form-control"> </td>
+                                            <td style=""><input name="phones" id="phones" type="text" value="<%= data.get(i)[6] %>" class="form-control"> </td>
+                                            <td style=""><input name="address" id="address" type="text" value="<%= data.get(i)[7] %>" class="form-control"> </td>
+                                            <td><input name="roles" id="roles" type="text" value="<%= data.get(i)[8].toUpperCase().charAt(0) %>" class="form-control"> </td>
+                                            <td style=""><input name="birthdays" id="birthdays" type="text" value="<%= data.get(i)[9] %>" class="form-control"> </td>
+                                            <td style=""><input name="status" id="status" type="text" value="<%= data.get(i)[10] %>" class="form-control"> </td>
+                                            <td><input name="username" id="username" type="text" value="<%= data.get(i)[11] %>" class="form-control"> </td>
+                                            <td><input name="passwords" id="passwords" type="text" value="<%= data.get(i)[12] %>" class="form-control"> </td>
                                         </tr>
                                         <% } %>
                                     </tbody>
-                                </table> 
+                                </table>
+                                <button id="send" type="button" class="btn btn-primary btn-fill pull-right" >Enviar</button>
+                                <div class="clearfix"></div>
+                                
                             </div>
                         </div>
                     </div>
@@ -218,7 +216,8 @@
             </div>
         </div>
 
-       <footer class="footer">
+
+        <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
@@ -243,11 +242,10 @@
 
     </div>
 </div>
-
-
 </body>
-
-  <!--   Core JS Files   -->
+    
+   
+<!--   Core JS Files   -->
     <script src="public/assets/js/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="public/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -265,5 +263,86 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="public/assets/js/demo.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        var sendData = function(documents, lastnames, middlenames, genders,emails,phones, address, roles, birthdays,  status, username, passwords ){
+            $("#table").hide();
+            $.post('saveusers', {
+                documents : documents,
+                lastnames : lastnames,
+                middlenames : middlenames,
+                genders : genders,
+                emails : emails,
+                phones : phones,
+                address : address,
+                roles : roles,
+                birthdays : birthdays,
+                status : status,
+                username : username,
+                passwords : passwords
+            }, function(response){
+                $("#response").html(response);
+            })
+        }
+       
+        $("#send").click(function (){
+            
+            var documents = "";
+            var lastnames = "";
+            var middlenames = "";
+            var genders = "";
+            var emails ="";
+            var phones = "";
+            var address = "";
+            var roles = "";
+            var birthdays = "";
+            var status = status;
+            var username = "";
+            var passwords = "";
 
-</html>
+            $('tr #documents').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                documents = documents + $(elemento).val() +";"
+            });
+
+            $('tr #lastnames').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                lastnames = lastnames + $(elemento).val() +";"
+            });
+
+            $('tr #middlenames').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                middlenames = middlenames + $(elemento).val() +";"
+            });
+
+            $('tr #genders').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                genders = genders + $(elemento).val() +";"
+            });
+            
+            $('tr #genders').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                genders = genders + $(elemento).val() +";"
+            });
+            
+            $('tr #genders').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                genders = genders + $(elemento).val() +";"
+            });
+            
+            $('tr #genders').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                genders = genders + $(elemento).val() +";"
+            });
+            
+            $('tr #genders').each(function(indice, elemento){
+                // places.push($(elemento).val());
+                genders = genders + $(elemento).val() +";"
+            });
+            
+            sendData(documents, lastnames, middlenames, genders,emails,phones, address, roles, birthdays,  status, username, passwords);
+        }); 
+    });
+</script>
+</html

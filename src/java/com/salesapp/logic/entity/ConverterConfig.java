@@ -59,22 +59,26 @@ public class ConverterConfig {
     public static String convertePersonType(PersonType personType){
         switch(personType){
             case CLIENTE:
-                return "S";
-            case VENDEDOR:
                 return "B";
+            case VENDEDOR:
+                return "C";
+            case ADMINISTRADOR:
+                return "A";
             default:
-               return "S";
+               return null;
         }
     }
     
     public static PersonType convertePersonType(String personType){
         switch(personType){
-            case "S":
+            case "C":
                 return PersonType.VENDEDOR;
             case "B":
                 return PersonType.CLIENTE;
+            case "A":
+                return PersonType.ADMINISTRADOR;
             default:
-                return PersonType.CLIENTE;
+                return null;
         }
     }
     

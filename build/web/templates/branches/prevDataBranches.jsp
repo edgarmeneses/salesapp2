@@ -66,7 +66,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="places">
                         <i class="fa fa-globe"></i>
                         <p>Lugares</p>
@@ -146,7 +146,7 @@
         <div class="breadcrumb2">
             <div class="btn-group btn-breadcrumb btn-fill">
                 <a href="admin" class="btn btn-primary btn-fill"><i class="fa fa-home"></i></a>
-                <a href="places" class="btn btn-primary btn-fill">Lugares</a>
+                <a href="branches" class="btn btn-primary btn-fill">Sucursales</a>
                 <a class="btn btn-info btn-fill">Datos cargados</a>
                 <!--a href="#" class="btn btn-info btn-fill">Success</a-->
             </div>

@@ -11,5 +11,6 @@ package com.salesapp.logic.entity;
  */
 public enum PersonType {
     VENDEDOR,
-    CLIENTE
+    CLIENTE,
+    ADMINISTRADOR
 }
