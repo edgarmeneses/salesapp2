@@ -22,12 +22,6 @@ public class TestProduct {
         Category category = CategoryController.findById(2);
         System.out.println(category);
         
-        if(category != null){
-            Product product = ProductController.create("Atun", "1 KG", new Date(), 40, 20, "Vancamps", Status.ACTIVO, category);
-        }else{
-            System.out.println("La categoria no existe ....");
-        }
-        
     }
     
 }

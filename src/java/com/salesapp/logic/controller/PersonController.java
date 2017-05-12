@@ -111,6 +111,27 @@ public class PersonController {
             return null;
         }
     }
+     
+    public static Person findUsername(String username){
+        try{
+            SessionApp.connect();
+            Session session = SessionApp.getSession();
+            String hql = "from com.salesapp.logic.entity.Person "+
+                         "where username='"+username+"'";
+            Query query = session.createQuery(hql);
+
+            if(!query.list().isEmpty()){
+                Person person =(Person) query.list().get(0);
+                return person;
+            }else{
+                SessionApp.close();;
+                return null;
+            }
+        }catch(Exception e){
+            return null;
+        }
+        
+    }
 
     
     /*public static List findAll(){

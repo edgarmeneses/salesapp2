@@ -36,12 +36,7 @@ public class TestSupplier {
         System.out.println(supplier);
         System.out.println("----------------FindByName-------------------");
         Supplier supplier2 = SupplierController.findById(1);
-        List supplirs2 = SupplierController.findByName("m");
-        
-        for (Object data: supplirs2) {
-            Supplier dataSupplier = (Supplier) data;
-            System.out.println(dataSupplier);
-        }
+
     }
     
 }

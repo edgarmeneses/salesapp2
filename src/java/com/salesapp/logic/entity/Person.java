@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import static com.salesapp.logic.entity.ConverterConfig.*;
+import com.salesapp.logic.services.Encript;
 
 /**
  *
@@ -39,17 +40,17 @@ public class Person implements Serializable{
     public Person(int idPerson, int document, String middlename, String lastname, Date birthDate, String phone, String address, String email, Gender gender, PersonType personType, Status status, String username, String password) {
         this.idPerson = idPerson;
         this.document = document;
-        this.middlename = middlename;
-        this.lastname = lastname;
+        this.middlename = middlename.toUpperCase();
+        this.lastname = lastname.toUpperCase();
         this.birthDate = birthDate;
         this.phone = phone;
-        this.address = address;
+        this.address = address.toUpperCase();
         this.email = email;
         this.gender = converteGender(gender);
         this.personType = convertePersonType(personType);
         this.status = converteStatus(status);
         this.username = username;
-        this.password = password;
+        this.password = Encript.generateHash(password);
         this.receipts = new ArrayList<>();
     }
 

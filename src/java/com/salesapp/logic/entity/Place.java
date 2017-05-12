@@ -28,7 +28,7 @@ public class Place implements Serializable{
 
     public Place(int idPlace, String name, PlaceType placeType, Place location) {
         this.idPlace = idPlace;
-        this.name = name;
+        this.name = name.toUpperCase();
         this.placeType = ConverterConfig.converterPlaceType(placeType);
         //this.asignedPlaceType(placeType);
         this.location = location;

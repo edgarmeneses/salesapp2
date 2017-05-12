@@ -106,6 +106,14 @@ public class Product implements Serializable{
         return status;
     }
     
+    public String getNameCategory (){
+        if(this.category != null){
+            return category.getName();
+        }else{
+            return "SIN CATEGORIA";
+        }
+    }
+    
     public Status status() {
         switch(this.status){
             case "A":

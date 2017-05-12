@@ -202,7 +202,7 @@
                                         <% for ( int i=0; i < products.size(); i++){
                                         %>
                                         <tr>
-                                            <td> <%= products.get(i).getCategory()  %> </td>
+                                            <td> <%= products.get(i).getNameCategory().toUpperCase()  %> </td>
                                             <td> <%= products.get(i).getName().toUpperCase() %> </td>
                                             <td> <%= products.get(i).getUnitMeasure().toUpperCase() %> </td>
                                             <td> <%= products.get(i).getStock() %> </td>

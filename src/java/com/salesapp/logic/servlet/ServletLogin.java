@@ -7,6 +7,8 @@ package com.salesapp.logic.servlet;
 
 import com.salesapp.logic.controller.PersonController;
 import com.salesapp.logic.entity.Person;
+import com.salesapp.logic.entity.PersonType;
+import com.salesapp.logic.services.Encript;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -53,11 +55,36 @@ public class ServletLogin extends HttpServlet {
     }
     
     public void processDoPost(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-        /*String user = request.getParameter("user");
-        String clave = request.getParameter("password");
-        Person p = PersonController.findById(1);
-        System.out.println(p); */
-        response.sendRedirect("admin");
+        try{
+            String user = request.getParameter("user");
+            String password = request.getParameter("password");
+
+            Person person = PersonController.findUsername(user);
+
+            if(user != null){
+                if(Encript.validateHash(password, person.getPassword())){
+                    if(person.personType().equals(PersonType.ADMINISTRADOR)){
+                         response.sendRedirect("admin");
+                    }else if(person.personType().equals(PersonType.VENDEDOR)){
+                         response.sendRedirect("sales");
+                    }else{
+                         request.getSession().setAttribute("message", "Usuario y/o contraseña incorrectos.");
+                        response.sendRedirect("login");
+                    }
+                    
+                }else{
+                    request.getSession().setAttribute("message", "Usuario y/o contraseña incorrectos.");
+                    response.sendRedirect("login");
+                }
+            }else{
+                request.getSession().setAttribute("message", "Usuario y/o contraseña incorrectos.");
+                response.sendRedirect("login");
+            }
+        }catch(Exception e){
+            request.getSession().setAttribute("message", "Usuario y/o contraseña incorrectos.");
+            response.sendRedirect("login");
+        }
+        
         
         
         /**if(p.getPassword().equals(clave)){
