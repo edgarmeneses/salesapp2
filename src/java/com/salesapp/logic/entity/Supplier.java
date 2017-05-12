@@ -89,15 +89,18 @@ public class Supplier implements Serializable{
         return this.status;
     }
     
-    
-
-    public void setStatus(Status status) {
-        this.status = converteStatus(status);
+    public Status status (){
+        return  ConverterConfig.converteStatus(this.status);
     }
-    
     private void setStatus(String status) {
         this.status = status;
     }
+
+    private void setStatus(Status status) {
+        this.status = converteStatus(status);
+    }
+    
+  
 
     @Override
     public String toString() {

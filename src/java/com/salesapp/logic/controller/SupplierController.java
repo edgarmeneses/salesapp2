@@ -65,18 +65,27 @@ public class SupplierController {
         }
     }
     
-    public static List findByName(String name){
-        SessionApp.connect();
-        Session session = SessionApp.getSession();
-        String hql = "from com.salesapp.logic.entity.Supplier "+
-                      "where name like '%"+name+"%'";
-        System.out.println(hql);
-        Query query = session.createQuery(hql);
-        List list = query.list();
-        session.close();
-        return list;
-    }
-    
+    public static Supplier findByName(String name){
+        try {
+         SessionApp.connect();
+         Session session = SessionApp.getSession();
+         String hql = "from com.salesapp.logic.entity.Supplier " +
+                      "where name='"+name.toUpperCase()+"'";
+         Query query = session.createQuery(hql);
+         
+         if(!query.list().isEmpty()){
+             Supplier supplier = (Supplier) query.list().get(0);
+              SessionApp.close();
+            return supplier;
+         }else{
+              SessionApp.close();
+             return null;
+         }
+        } catch (Exception e) {
+            return  null;
+        }
+        
+     }
     public static Supplier findByNit(String nit){
         SessionApp.connect();
         Session session = SessionApp.getSession();

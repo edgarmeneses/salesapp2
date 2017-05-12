@@ -28,8 +28,8 @@ public class SaveCategories {
             for (int i = 0; i < subcategory.length; i++) {
                 String type = status[i].toUpperCase().charAt(0)+"";
                 if( !subcategory[i].equals("") &&  !names[i].equals("") && ( type.equals("A") || type.equals("I") )){
-                    Category category = findCategory(subcategory[i]);
-                    Category name = findPlace(names[i], type, category);
+                    Category category = findSubCategory(subcategory[i]);
+                    Category name = findCategory(names[i], type, category);
                 }else{
                     String reject = subcategory[i] + ";" + names[i] + ";" + status[i];
                     dataReject.add(reject);
@@ -40,12 +40,11 @@ public class SaveCategories {
         System.out.println(dataReject);
     }
     
-    public static Category findPlace( String name , String status,Category subcategory){
+    public static Category findCategory( String name , String status,Category subcategory){
         return createCategorie(subcategory, name,ConverterConfig.converteStatus(status));
     }
     
-    public static Category findCategory(String name){
-    //     Place countryPlace = PlaceController.findByName("Colombia");
+    public static Category findSubCategory(String name){
          return createCategorie( null ,name , Status.ACTIVO );
     }
     

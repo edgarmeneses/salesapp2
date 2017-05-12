@@ -51,9 +51,7 @@ Contributor(s):
         <property name="unitMeasure" type="string">
             <column length="15" name="unit_of_measure" not-null="false" unique="false"/>
         </property>
-        <property name="expirationDate" type="java.util.Date">
-            <column  name="expiration_date" not-null="false" unique="false"/>
-        </property>
+       
         <property name="stock" type="int">
             <column length="5" name="stock" not-null="false" unique="false"/>
         </property>
