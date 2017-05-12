@@ -5,8 +5,19 @@
  */
 package com.salesapp.logic.servlet;
 
+import com.salesapp.logic.controller.BranchController;
+import com.salesapp.logic.controller.PlaceController;
+import com.salesapp.logic.controller.ProductController;
+import com.salesapp.logic.controller.SupplierController;
+import com.salesapp.logic.entity.Branch;
+import com.salesapp.logic.entity.Place;
+import com.salesapp.logic.entity.Product;
+import com.salesapp.logic.entity.Supplier;
+import com.salesapp.logic.services.ConverterObject;
+import com.salesapp.logic.services.ReadFiled;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author EDGAR MENESES
  */
 @WebServlet(name = "products", urlPatterns = {"/products"})
-public class LoadProducts extends HttpServlet {
+public class ServletLoadProducts extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,8 +56,23 @@ public class LoadProducts extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+  
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    protected void processLoadFiled(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+        ArrayList<String []> datos = ConverterObject.converteData(ReadFiled.read(request.getInputStream()));
+        request.getSession().setAttribute("datos", datos);
+        getServletConfig().getServletContext().getRequestDispatcher("/templates/products/prevDataProducts.jsp").forward(request,response); 
+        
+    }
+    
+    protected void processDoGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+        ArrayList<Product> products = (ArrayList<Product>) ProductController.findAll();
+        request.getSession().setAttribute("products", products);
+        getServletConfig().getServletContext().getRequestDispatcher("/templates/products/loadProducts.jsp").forward(request,response);
+        
+    }
+   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -58,8 +84,9 @@ public class LoadProducts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletConfig().getServletContext().getRequestDispatcher("/templates/products/loadProducts.jsp").forward(request,response);
-//processRequest(request, response);
+            processDoGet(request, response);
+      //  getServletConfig().getServletContext().getRequestDispatcher("/templates/categories/loadCategories.jsp").forward(request,response);
+
     }
 
     /**
@@ -73,7 +100,7 @@ public class LoadProducts extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processLoadFiled(request, response);
     }
 
     /**

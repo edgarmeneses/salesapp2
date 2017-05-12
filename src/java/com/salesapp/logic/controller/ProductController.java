@@ -21,10 +21,11 @@ import org.hibernate.Session;
  */
 public class ProductController {
     
-    public static Product create(String name, String unitMeasure, Date expirationDate, int stock, int quantityMin, String hallmark, Status status, Category category){
+    public static Product create(Category category, String name, String unitMeasure, int stock, String hallmark, int quantityMin,Status status){
         SessionApp.connect();
         Session session = SessionApp.getSession();
-        Product product = new Product(0, name, unitMeasure, expirationDate, stock, quantityMin, hallmark, status, category);
+        Product product = new Product(0,category,  name, unitMeasure,stock,hallmark, quantityMin,status);
+        
         session.save(product);
         SessionApp.commit();
         SessionApp.close();
@@ -49,5 +50,46 @@ public class ProductController {
             return null;
         }
     }
+    
+      
+       
+        public static List findAll(){
+            try {
+                SessionApp.connect();
+        Session session = SessionApp.getSession();
+        String hql = "from com.salesapp.logic.entity.Product ";
+        System.out.println(hql);
+        Query query = session.createQuery(hql);
+       
+        List products = query.list();
+
+        SessionApp.close();
+        return products;
+            } catch (Exception e) {
+                return  null;
+            }
+        
+    }
+    
+         public static Product findByName(String name){
+             try {
+                SessionApp.connect();
+                Session session = SessionApp.getSession();
+                String hql = "from com.salesapp.logic.entity.Product " +
+                      "where name='"+name.toUpperCase()+"'";
+                Query query = session.createQuery(hql);
+         
+                if(!query.list().isEmpty()){
+                Product product = (Product) query.list().get(0);
+                SessionApp.close();
+                return product;
+            }else{
+                SessionApp.close();
+                return null;
+            } 
+            } catch (Exception e) {
+                 return null;
+             }
+        }
     
 }

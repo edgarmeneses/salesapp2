@@ -17,7 +17,7 @@ public class Product implements Serializable{
     private int idProduct;
     private String name;
     private String unitMeasure;
-    private Date expirationDate;
+  //  private Date expirationDate;
     private int stock;
     private int quantityMin;
     private String hallmark;
@@ -27,17 +27,19 @@ public class Product implements Serializable{
     public Product() {
     }
 
-    public Product(int idProduct, String name, String unitMeasure, Date expirationDate, int stock, int quantityMin, String hallmark, Status status, Category category) {
+    public Product(int idProduct, Category category, String name, String unitMeasure, int stock,String hallmark, int quantityMin, Status status) {
         this.idProduct = idProduct;
         this.name = name;
         this.unitMeasure = unitMeasure;
-        this.expirationDate = expirationDate;
+       
         this.stock = stock;
         this.quantityMin = quantityMin;
         this.hallmark = hallmark;
         this.asigenedStatus(status);
         this.category = category;
     }
+
+   
     
     private void asigenedStatus(Status status){
         switch(status){
@@ -74,14 +76,6 @@ public class Product implements Serializable{
 
     public void setUnitMeasure(String unitMeasure) {
         this.unitMeasure = unitMeasure;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
     }
 
     public int getStock() {
@@ -141,6 +135,8 @@ public class Product implements Serializable{
 
     @Override
     public String toString() {
-        return "Product{" + "idProduct=" + idProduct + ", name=" + name + ", unitMeasure=" + unitMeasure + ", expirationDate=" + expirationDate + ", stock=" + stock + ", quantityMin=" + quantityMin + ", hallmark=" + hallmark + ", status=" + status() + ", category=" + category + '}';
-    }    
+        return "Product{" + "idProduct=" + idProduct + ", name=" + name + ", unitMeasure=" + unitMeasure + ", stock=" + stock + ", quantityMin=" + quantityMin + ", hallmark=" + hallmark + ", status=" + status + ", category=" + category + '}';
+    }
+
+      
 }
