@@ -28,9 +28,9 @@ public class Supplier implements Serializable{
     public Supplier(int idSupplier, String nit, String name, String phone, String address, String description, Status status) {
         this.idSupplier = idSupplier;
         this.nit = nit;
-        this.name = name;
+        this.name = name.toUpperCase();
         this.phone = phone;
-        this.address = address;
+        this.address = address.toUpperCase();
         this.description = description;
         this.status= converteStatus(status);
     }

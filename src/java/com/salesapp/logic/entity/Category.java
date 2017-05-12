@@ -23,22 +23,9 @@ public class Category implements Serializable{
 
     public Category(int idCategory, String name, Status status, Category subcategory) {
         this.idCategory = idCategory;
-        this.name = name;
-        this.asigenedStatus(status);
+        this.name = name.toUpperCase();
+        this.status = ConverterConfig.converteStatus(status);
         this.subcategory = subcategory;
-    }
-    
-    private void asigenedStatus(Status status){
-        switch(status){
-            case ACTIVO:
-                this.status="A";
-                break;
-            case INACTIVO:
-                this.status="I";
-                break;
-            default:
-                break;
-        }
     }
 
     public int getIdCategory() {
@@ -62,13 +49,7 @@ public class Category implements Serializable{
     }
     
     public Status status() {
-        switch(this.status){
-            case "A":
-                return Status.ACTIVO;
-            case "I":
-                return Status.INACTIVO;
-        }
-        return null;
+      return ConverterConfig.converteStatus(this.status);
     }
 
     private void setStatus(String status) {
@@ -76,7 +57,7 @@ public class Category implements Serializable{
     }
     
     public void setStatus(Status status) {
-        this.asigenedStatus(status);
+       this.status = ConverterConfig.converteStatus(status);
     }
 
     public Category getSubcategory() {
@@ -90,14 +71,13 @@ public class Category implements Serializable{
             return "Sin Categoria padre";
         }
     }
-
-
+     
     public void setSubcategory(Category subcategory) {
         this.subcategory = subcategory;
     }
 
     @Override
     public String toString() {
-        return "Category{" + "idCategory=" + idCategory + ", name=" + name + ", status=" + status() + ", subcategory=" + subcategory + '}';
+        return "Category{" + "idCategory=" + idCategory + ", name=" + name + ", status=" + ConverterConfig.converteStatus(this.status) + ", subcategory=" + subcategory + '}';
     }
 }

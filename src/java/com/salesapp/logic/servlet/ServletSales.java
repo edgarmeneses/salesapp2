@@ -5,8 +5,11 @@
  */
 package com.salesapp.logic.servlet;
 
+import com.salesapp.logic.controller.ProductController;
+import com.salesapp.logic.entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +51,10 @@ public class ServletSales extends HttpServlet {
     }
     
     protected void processDoGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         getServletConfig().getServletContext().getRequestDispatcher("/templates/facture/ServletSales.jsp").forward(request,response);
+        
+        List products = ProductController.findAll();
+        request.getSession().setAttribute("products", products);
+        getServletConfig().getServletContext().getRequestDispatcher("/templates/facture/sales.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

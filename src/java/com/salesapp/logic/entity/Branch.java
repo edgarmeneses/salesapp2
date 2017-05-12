@@ -28,8 +28,8 @@ public class Branch implements Serializable{
     public Branch(int idBranch, String nit, String name, String address, String phone, BranchType branchType, Status status, Place place) {
         this.idBranch = idBranch;
         this.nit = nit;
-        this.name = name;
-        this.address = address;
+        this.name = name.toUpperCase();
+        this.address = address.toUpperCase();
         this.phone = phone;
         this.status = ConverterConfig.converteStatus(status);
         this.branchType = ConverterConfig.converterBranchType(branchType);

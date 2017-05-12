@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% String message = (String) session.getAttribute("message");%>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,7 @@
     <link href="public/assets/css/responsive.css" rel="stylesheet" type="text/css">
     <link href="public/assets/css/animate.css" rel="stylesheet" type="text/css">
     <link href="public/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/assets/css/demo.css" rel="stylesheet" />
 
     <!-- MetisMenu CSS -->
     <link href="public/assets/css/metisMenu.min.css" rel="stylesheet">
@@ -76,16 +78,26 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../public/assets/js/jquery.min.js"></script>
+    <script src="public/assets/js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../public/assets/js/bootstrap.min.js"></script>
+    <script src="public/assets/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../public/assets/js/metisMenu.min.js"></script>
+    <script src="public/assets/js/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="public/assets/js/demo.js"></script>
+     <script src="public/assets/js/bootstrap-notify.js"></script>
+    <script>
+        
+       $(document).ready(function (){
+            <% if ( message != null) {%>
+                demo.showNotification('top','left');
+            <%}%>
+       })
+    </script>
 
 </body>
 
